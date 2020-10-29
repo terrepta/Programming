@@ -6,7 +6,7 @@
 
 | Практические | Лабораторные |
 | ------------ | ------------ |
-| Практическая 1 - [[C++]](Programming/Practice/01/C++) [[Python]] (Programming/Practice/01/Python) | ------------ |
+| Практическая 1 - [[C++]](https://github.com/terrepta/Programming/tree/main/Practice/01/C%2B%2B) [[Python]] (Programming/Practice/01/Python/01.py /) | ------------ |
 | Практическая 2 - [[C++]]() [[Python]] () | ------------ |
 | Практическая 3 - [[C++]]() [[Python]] () | ------------ |
 | Практическая 4 - [[C++]]() [[Python]] () | ------------ |
