@@ -11,7 +11,7 @@
 | Практическая 3 - [[C++]](https://github.com/terrepta/Programming/blob/main/Practice/03/C%2B%2B/03.cpp) [[Python]](https://github.com/terrepta/Programming/blob/main/Practice/03/Python/03.py) | ------------ |
 | Практическая 4 - [[C++]](https://github.com/terrepta/Programming/blob/main/Practice/04/C%2B%2B/04/04/04.cpp) [[Python]](https://github.com/terrepta/Programming/blob/main/Practice/04/Python/04.py) | ------------ |
 | Практическая 5 - [[C++]](https://github.com/terrepta/Programming/blob/main/Practice/05/C%2B%2B/05/05.cpp) [[Python]](https://github.com/terrepta/Programming/blob/main/Practice/05/Python/05.py) | ------------ |
-| Практическая 6 - [[C++]](https://github.com/terrepta/Programming/blob/main/Practice/06/C%2B%2B/ConsoleApplication1/ConsoleApplication1.cpp) [[Python]] (https://github.com/terrepta/Programming/blob/main/Practice/06/Python/06.py) | ------------ |
+| Практическая 6 - [[C++]](https://github.com/terrepta/Programming/blob/main/Practice/06/C%2B%2B/ConsoleApplication1/ConsoleApplication1.cpp) [[Python]](https://github.com/terrepta/Programming/blob/main/Practice/06/Python/06.py) | ------------ |
 | Практическая 7 - [[C++]](https://github.com/terrepta/Programming/blob/main/Practice/07/C%2B%2B/07/07.cpp) [[Python]](https://github.com/terrepta/Programming/blob/main/Practice/07/Python/07.py) | ------------ |
 | Практическая 8 - [[C++]](https://github.com/terrepta/Programming/blob/main/Practice/08/C%2B%2B/08/08.cpp) [[Python]](https://github.com/terrepta/Programming/blob/main/Practice/08/Python/08.py) | ------------ |
 | Практическая 9 - [[C++]](https://github.com/terrepta/Programming/blob/main/Practice/09/C%2B%2B/09/09.cpp) [[Python]](https://github.com/terrepta/Programming/blob/main/Practice/09/Python/09.py) | ------------ |
