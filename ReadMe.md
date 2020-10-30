@@ -21,7 +21,7 @@
 | Практическая 13 - [[C++]](https://github.com/terrepta/Programming/blob/f6cb8dde4bd7807fb37fb0ffa197d7c6859f2b31/Practice/13/C%2B%2B/13/13.cpp) [[Python]](https://github.com/terrepta/Programming/blob/main/Practice/13/Python/13.py) | ------------ |
 | Практическая 14 - [[C++]](https://github.com/terrepta/Programming/blob/f6cb8dde4bd7807fb37fb0ffa197d7c6859f2b31/Practice/14/C%2B%2B/14/14.cpp) [[Python]](https://github.com/terrepta/Programming/blob/main/Practice/14/Python/14.py) | ------------ |
 | Практическая 15 - [[C++]](https://github.com/terrepta/Programming/blob/f6cb8dde4bd7807fb37fb0ffa197d7c6859f2b31/Practice/15/%D0%A1%2B%2B/15/15.cpp) [[Python]](https://github.com/terrepta/Programming/blob/main/Practice/15/Python/15.py) | ------------ |
-| Практическая 16 - [[C++]](https://github.com/terrepta/Programming/blob/main/Practice/16/C%2B%2B/16/16.cpp) [[Python]]() | ------------ |
+| Практическая 16 - [[C++]](https://github.com/terrepta/Programming/blob/main/Practice/16/C%2B%2B/16/16.cpp) [[Python]](./Practice/21/Python/21.py ) | ------------ |
 | Практическая 21 - [[C++]](https://github.com/terrepta/Programming/blob/f6cb8dde4bd7807fb37fb0ffa197d7c6859f2b31/Practice/21/C%2B%2B/21/21.cpp) [[Python]](https://github.com/terrepta/Programming/blob/main/Practice/21/Python/21.py) | ------------ |
 
 
