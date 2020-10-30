@@ -2,7 +2,7 @@
 using namespace std;
 int main() {
 	setlocale(LC_ALL, "russian");
-	int s, l1,r1, l2, r2, x1, x2, lr2, dist;
+	long int s, l1,r1, l2, r2, x1, x2, lr2, dist;
 	cout << "Введите значения s, l1, r1, l2, r2\n";
 	cin >> s >> l1 >> r1 >> l2 >> r2;
 	lr2 = r2 - l2;
