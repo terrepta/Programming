@@ -18,7 +18,7 @@ for item in in_file:         		#подсчет количества юзеров
 
 
 for item in in_file:	
-    for u in range (all_u):					#заносим все данные во временное хранилище данных temp_s
+    for u in range (all_u):					
         del item ['id']
         del item ['title']
         del item ['completed']
