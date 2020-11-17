@@ -1,1 +1,4 @@
-﻿  24.vcxproj -> C:\Users\Admin\Documents\Programming\Practice\24\C++\24\Debug\24.exe
+﻿  24.cpp
+C:\Users\Admin\Documents\Programming\Practice\24\C++\24\24.cpp(18,20): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Admin\Documents\Programming\Practice\24\C++\24\24.cpp(23,20): warning C4018: <: несоответствие типов со знаком и без знака
+  24.vcxproj -> C:\Users\Admin\Documents\Programming\Practice\24\C++\24\Debug\24.exe
