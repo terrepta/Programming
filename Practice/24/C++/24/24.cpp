@@ -23,7 +23,7 @@ int main()
 	for (int i = 0; i < in_file.size(); i++) {							//условие, проверяющее каждый элемент in.json
 		for (int u = 1; u <= all_u; u++)							//условие, проверяющее кадого юзера по очереди
 		{
-			if (in_file[i]["completed"] == true && in_file[i]["userId"] == u)
+			if (in_file[i]["completed"] && in_file[i]["userId"] == u)
 				n_task_comp[u-1]++;						//подсчет количества выполненных заданий для каждого юзера
 		}
 	}
