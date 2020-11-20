@@ -34,4 +34,5 @@ int main()
 	out_file.push_back(temp_s);			//добавление элементов в массив 
 	ofstream add("out.json");		
 	add << setw(2) << out_file;		//запись данных из out_file в файл out.json
+	delete[] n_task_comp;
 	}
