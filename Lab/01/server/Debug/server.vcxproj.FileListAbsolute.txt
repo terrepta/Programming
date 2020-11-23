@@ -1,0 +1,2 @@
+C:\Users\Admin\Documents\Programming\Lab\01\server\Debug\server.exe
+C:\Users\Admin\Documents\Programming\Lab\01\server\Debug\server.pdb
