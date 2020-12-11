@@ -26,7 +26,7 @@
 | Практическая 21 - [[C++]](https://github.com/terrepta/Programming/blob/f6cb8dde4bd7807fb37fb0ffa197d7c6859f2b31/Practice/21/C%2B%2B/21/21.cpp) [[Python]](https://github.com/terrepta/Programming/blob/main/Practice/21/Python/21.py) | ------------ |
 | Практическая 23 - [[C++]](https://github.com/terrepta/Programming/tree/main/Practice/23/C%2B%2B/23) | ------------ |
 | Практическая 24 - [[C++]](https://github.com/terrepta/Programming/tree/main/Practice/24/C%2B%2B/24) [[Python]](https://github.com/terrepta/Programming/blob/main/Practice/24/Python/main.py) | ------------ |
-| Практическая 25 - [[C++]](https://github.com/terrepta/Programming/blob/main/Practice/25/C%2B%2B/BozoSort/BozoSort.cpp) [[Python]](https://github.com/terrepta/Programming/blob/main/Practice/25/Python/BozoSort.py) | ------------ |
-| Практическая 26 - [[C++]](https://github.com/terrepta/Programming/blob/main/Practice/26/C%2B%2B/26bozo/26bozo.cpp) | ------------ |
-| Практическая 27 - [[C++]](https://github.com/terrepta/Programming/blob/main/Practice/27/C%2B%2B/27%20(top%205)/27%20(top%205).cpp) [[Python]](https://github.com/terrepta/Programming/blob/main/Practice/27/Python/27.py) | ------------ |
-| Практическая 28 - [[C++]](https://github.com/terrepta/Programming/blob/main/Practice/28/C%2B%2B/28/28.cpp) [[Python]](./Practice/28/Python/28.py) | ------------ |
+| Практическая 25 - [[C++]](./Practice/25/C%2B%2B/BozoSort/BozoSort.cpp) [[Python]](./Practice/25/Python/BozoSort.py) | ------------ |
+| Практическая 26 - [[C++]](./Practice/26/C%2B%2B/26bozo/26bozo.cpp) | ------------ |
+| Практическая 27 - [[C++]](./Practice/27/C%2B%2B/27%20(top%205)/27%20(top%205).cpp) [[Python]](./Practice/27/Python/27.py) | ------------ |
+| Практическая 28 - [[C++]](./Practice/28/C%2B%2B/28/28.cpp) [[Python]](./Practice/28/Python/28.py) | ------------ |
