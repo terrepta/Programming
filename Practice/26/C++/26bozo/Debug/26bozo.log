@@ -1,0 +1,6 @@
+﻿  26bozo.cpp
+C:\Users\Admin\Documents\Programming\Practice\26\C++\26bozo\26bozo.cpp(82,11): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\Admin\Documents\Programming\Practice\26\C++\26bozo\26bozo.cpp(102,13): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\Admin\Documents\Programming\Practice\26\C++\26bozo\26bozo.cpp(39,13): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\Admin\Documents\Programming\Practice\26\C++\26bozo\26bozo.cpp(121): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::vector<double,std::allocator<double>> BozoSort<double>(std::vector<std::vector<double,std::allocator<double>>,std::allocator<std::vector<double,std::allocator<double>>>>,int,bool)"
+  26bozo.vcxproj -> C:\Users\Admin\Documents\Programming\Practice\26\C++\26bozo\Debug\26bozo.exe
