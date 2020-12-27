@@ -1,4 +1,0 @@
-﻿  BozoSort.cpp
-C:\Users\Admin\Documents\Programming\Practice\25\C++\BozoSort\BozoSort.cpp(36,13): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-C:\Users\Admin\Documents\Programming\Practice\25\C++\BozoSort\BozoSort.cpp(84,11): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-  BozoSort.vcxproj -> C:\Users\Admin\Documents\Programming\Practice\25\C++\BozoSort\Debug\BozoSort.exe

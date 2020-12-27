@@ -1,2 +1,0 @@
-C:\Users\Admin\Documents\Programming\Practice\25\C++\BozoSort\Debug\BozoSort.exe
-C:\Users\Admin\Documents\Programming\Practice\25\C++\BozoSort\Debug\BozoSort.pdb
