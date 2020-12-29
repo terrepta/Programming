@@ -28,13 +28,7 @@ vector<T> BozoSort(vector<T>array, int num, bool b = 1) {
 struct Student {
     string name;
     int group;
-    int math, phys, hist, prog;
-    map<string, int> exams = { 
-        {"Math", math},
-        {"Phys", phys}, 
-        {"Hist", hist}, 
-        {"Prog", prog}
-    };
+    map<string, int> exams;
 };
 
 //перегрузка << для вывода информации об одном студенте
@@ -77,16 +71,16 @@ bool operator > (Student& a, Student& b) {
 int main() {
 //создание вектора из 10 структур типа Student
     vector<Student> AllStudents = {
-        Student{"Shima   T",  5,  3, 2, 3, 5},
-        Student{"Dragon  M",  2,  5, 5, 5, 3},
-        Student{"Tepes   A",  5,  4, 2, 2, 5},
-        Student{"Uzumaki N",  2,  3, 4, 3, 4},
-        Student{"Psycho  M",  4,  5, 5, 5, 5},
-        Student{"Uchiha  I",  2,  4, 4, 5, 2},
-        Student{"Elric   E",  2,  5, 4, 5, 3},
-        Student{"Izuku   M",  3,  4, 4, 4, 3},
-        Student{"Zoldyck K",  1,  3, 4, 4, 5},
-        Student{"Saitama S",  4,  4, 5, 3, 2},
+        Student{"Shima   T", 5, {{"Math", 3}, {"Phys", 2}, {"Hist", 3}, {"Prog", 5}}},
+        Student{"Dragon  M", 2, {{"Math", 5}, {"Phys", 5}, {"Hist", 5}, {"Prog", 3}}},
+        Student{"Tepes   A", 5, {{"Math", 4}, {"Phys", 2}, {"Hist", 2}, {"Prog", 5}}},
+        Student{"Uzumaki N", 2, {{"Math", 3}, {"Phys", 4}, {"Hist", 3}, {"Prog", 4}}},
+        Student{"Psycho  M", 4, {{"Math", 5}, {"Phys", 5}, {"Hist", 5}, {"Prog", 5}}},
+        Student{"Uchiha  I", 2, {{"Math", 4}, {"Phys", 4}, {"Hist", 5}, {"Prog", 2}}},
+        Student{"Elric   E", 2, {{"Math", 5}, {"Phys", 4}, {"Hist", 5}, {"Prog", 3}}},
+        Student{"Izuku   M", 3, {{"Math", 4}, {"Phys", 4}, {"Hist", 5}, {"Prog", 3}}},
+        Student{"Zoldyck K", 1, {{"Math", 3}, {"Phys", 4}, {"Hist", 4}, {"Prog", 5}}},
+        Student{"Saitama S", 4, {{"Math", 4}, {"Phys", 5}, {"Hist", 3}, {"Prog", 2}}}
     };
 
     /* проверка работы перегрузки << для одного студента

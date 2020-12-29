@@ -55,46 +55,46 @@ void record_to_config(json file) {
 
 //создание шаблона страницы с вебхуками
 string page() {
-string web_temp;
-ifstream page("webhooks.html");
-if (!page) {
-    logger << u8"Не удалось открыть webhooks.html.\n";
-    return "";
-}
-else {
-    logger << u8"Считывание шаблона из webhooks.html.\n";            //считывание в строку web
-    getline(page, web_temp, '\0');
-    page.close();
-}
-
-string final_page;
-string part_of_page;
-int n = file["webhooks"].size();
-if (n == 0) {
-    web_temp.replace(web_temp.find(w_list), w_list.size(), "");
-}
-else {
-    for (int i = 0; i < n; i++) {
-        part_of_page = webhook_template;
-        part_of_page.replace(part_of_page.find(w_url), w_url.size(), file["webhooks"][i]);
-        part_of_page.replace(part_of_page.find(w_url), w_url.size(), file["webhooks"][i]);
-        final_page += part_of_page;
+    string web_temp;
+    ifstream page("webhooks.html");
+    if (!page) {
+        logger << u8"Не удалось открыть webhooks.html.\n";
+        return "";
     }
-    web_temp.replace(web_temp.find(w_list), w_list.size(), final_page);
-}
-return web_temp;
+    else {
+        logger << u8"Считывание шаблона из webhooks.html.\n";            //считывание в строку web
+        getline(page, web_temp, '\0');
+        page.close();
+    }
+
+    string final_page;
+    string part_of_page;
+    int n = file["webhooks"].size();
+    if (n == 0) {
+        web_temp.replace(web_temp.find(w_list), w_list.size(), "");
+    }
+    else {
+        for (int i = 0; i < n; i++) {
+            part_of_page = webhook_template;
+            part_of_page.replace(part_of_page.find(w_url), w_url.size(), file["webhooks"][i]);
+            part_of_page.replace(part_of_page.find(w_url), w_url.size(), file["webhooks"][i]);
+            final_page += part_of_page;
+        }
+        web_temp.replace(web_temp.find(w_list), w_list.size(), final_page);
+    }
+    return web_temp;
 }
 
 
 //вывод страницы с вебхуками
-void get_webhooks(const Request& req, Response& res){
+void get_webhooks(const Request& req, Response& res) {
     res.set_content(page(), "text/html; charset=UTF-8");
 }
 
 //работает при нажатии кнопок на странице
 //обрабатывает вносимые изменения
 void post_webhooks(const Request& req, Response& res) {
-    if (req.has_param("del")){
+    if (req.has_param("del")) {
         string value = req.get_param_value("del");
         if (value != "") {
             logger << u8"Был получен новый параметр del\n";
@@ -106,11 +106,12 @@ void post_webhooks(const Request& req, Response& res) {
                     break;
                 }
             }
-        } else {
+        }
+        else {
             logger << u8"Поступил пустой запрос на удаление вебхука.\n";
         }
     }
-    if (req.has_param("set")){
+    if (req.has_param("set")) {
         string value = req.get_param_value("set");
         if (value != "") {                                         //если пришла не пустая строка
             logger << u8"Был получен новый параметр set\n";
@@ -143,12 +144,19 @@ void post_webhooks(const Request& req, Response& res) {
     res.set_content(page(), "text/html; charset=UTF-8");
 }
 
+
+void yandex_alice(const Request& req, Response& res) {
+
+}
+
 int main()
 {
     Server svr;                                 // Создаём сервер 
     svr.Get("/webhooks", get_webhooks);         //для работы с вх
-    svr.Post("/webhooks", post_webhooks);    
-    logger << u8"Сервер запущен по адресу http://localhost:1234/"<<endl;
+    svr.Post("/webhooks", post_webhooks);
+    svr.Post("/alice", yandex_alice);
+    logger << u8"Сервер запущен по адресу http://localhost:1234/" << endl;
     svr.listen("localhost", 1234);
 }
+
 
