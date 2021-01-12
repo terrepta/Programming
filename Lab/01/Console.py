@@ -35,9 +35,9 @@ city = Label(top_frame, font = ("Helvetica", 16), text = "Симферополь
 temperature = Label(main_frame, font=("Helvetica", 60, 'bold'), bg = "white")
 description = Label(top_frame, font=("Helvetica", 12), bg = color)
 
-city.pack(pady = 0)
+city.pack()
 temperature.pack(expand = True)
-description.pack(pady = 0)
+description.pack()
 
 site()
 
