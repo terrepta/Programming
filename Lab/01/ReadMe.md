@@ -51,8 +51,7 @@
 <details>
 <summary>Код сервера</summary>
 
-```С++
-
+```c++
 #include <iostream>
 #include <fstream>
 #include <string>
