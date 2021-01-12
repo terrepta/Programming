@@ -63,7 +63,6 @@ using namespace httplib;
 using json = nlohmann::json;
 
 int hour;
-bool relevance = false;
 
 string getCurrentWeather() {
     string s_weather;
@@ -129,8 +128,7 @@ void gen_responce(const Request& req, Response& res) {
         widget_template.replace(widget_template.find(temp2), temp2.length(), icon);
         widget_template.replace(widget_template.find(temp3), temp3.length(), str_temp_value);
         widget_template.replace(widget_template.find(temp3), temp3.length(), str_temp_value);
-        cout << "Widget strings have been updated.\n"
-            << widget_template << endl;
+        cout << "Widget strings have been updated.\n";
         
     }
     else {
@@ -157,8 +155,7 @@ void gen_responce(const Request& req, Response& res) {
         widget_template.replace(widget_template.find(temp2), temp2.length(), icon);
         widget_template.replace(widget_template.find(temp3), temp3.length(), str_temp_value);
         widget_template.replace(widget_template.find(temp3), temp3.length(), str_temp_value);
-        cout << "Widget strings have been updated.\n"
-            << widget_template << endl;
+        cout << "Widget strings have been updated.\n";
     }
     res.set_content(widget_template, "text/html");
 }
@@ -182,7 +179,7 @@ void gen_raw_responce(const Request& req, Response& res) {
         string description = j_weather["hourly"][hour]["weather"][0]["description"];
         raw["temp"] = int_temp_value;
         raw["description"] = description;
-        cout <<"Raw strings have been updated.\n"<< raw.dump(4) << endl;
+        cout <<"Raw strings have been updated.\n";
     }
     else {
         j_weather = json::parse(getCurrentWeather());
@@ -191,7 +188,7 @@ void gen_raw_responce(const Request& req, Response& res) {
         string description = j_weather["hourly"][hour]["weather"][0]["description"];
         raw["temp"] = int_temp_value;
         raw["description"] = description;
-        cout << "Raw strings have been updated.\n" << raw.dump(4) << endl;
+        cout << "Raw strings have been updated.\n";
     }
     res.set_content(raw.dump(), "text/json");
 }
@@ -219,11 +216,11 @@ import requests
 
 def site(event = None):
 	try:
-		upload = requests.get('http://localhost:3000/raw').content.decode("utf8")
-		upload_date = json.loads(upload)
+		load = requests.get('http://localhost:3000/raw').content.decode("utf8")
+		data = json.loads(load)
 
-		description.config(text=str(upload_date["description"]))
-		temperature.config(text=str(round(upload_date["temp"])) + "°C")
+		description.config(text = str(data["description"]))
+		temperature.config(text = str(round(data["temp"])) + "°C")
 	except requests.exceptions.ConnectionError:
 		pass
 

@@ -9,8 +9,7 @@ using namespace httplib;
 using json = nlohmann::json;
 
 int hour;
-bool relevance = false;
-//запрос текущей погоды с сайта и возврат json-a с этой погодой
+//запрос текущей погоды с сайта и возврат строки с ответом
 string getCurrentWeather() {
     string s_weather;
     Client GetWeather("http://api.openweathermap.org");
@@ -55,7 +54,7 @@ void gen_responce(const Request& req, Response& res) {
         }
     }
 
-    if (j_time["unixtime"] < j_weather["hourly"][hour]["dt"]){ //значит в кэше есть этот час
+    if (j_time["unixtime"] < j_weather["hourly"][hour]["dt"]){
         string temp1 = "{hourly[i].weather[0].description}";
         string temp2 = "{hourly[i].weather[0].icon}";
         string temp3 = "{hourly[i].temp}";
@@ -77,9 +76,7 @@ void gen_responce(const Request& req, Response& res) {
         widget_template.replace(widget_template.find(temp2), temp2.length(), icon);
         widget_template.replace(widget_template.find(temp3), temp3.length(), str_temp_value);
         widget_template.replace(widget_template.find(temp3), temp3.length(), str_temp_value);
-        cout << "Widget strings have been updated.\n"
-            << widget_template << endl;
-        
+        cout << "Widget strings have been updated.\n";
     }
     else {
         j_weather = json::parse(getCurrentWeather());
@@ -105,8 +102,7 @@ void gen_responce(const Request& req, Response& res) {
         widget_template.replace(widget_template.find(temp2), temp2.length(), icon);
         widget_template.replace(widget_template.find(temp3), temp3.length(), str_temp_value);
         widget_template.replace(widget_template.find(temp3), temp3.length(), str_temp_value);
-        cout << "Widget strings have been updated.\n"
-            << widget_template << endl;
+        cout << "Widget strings have been updated.\n";
     }
     res.set_content(widget_template, "text/html");
 }
@@ -125,13 +121,13 @@ void gen_raw_responce(const Request& req, Response& res) {
         }
     }
 
-    if (j_time["unixtime"] < j_weather["hourly"][hour]["dt"]) { //значит в кэше есть этот час
+    if (j_time["unixtime"] < j_weather["hourly"][hour]["dt"]) { 
         double temp_value = j_weather["hourly"][hour]["temp"];
         int int_temp_value = round(temp_value);
         string description = j_weather["hourly"][hour]["weather"][0]["description"];
         raw["temp"] = int_temp_value;
         raw["description"] = description;
-        cout <<"Raw strings have been updated.\n"<< raw.dump(4) << endl;
+        cout <<"Raw strings have been updated.\n";
     }
     else {
         j_weather = json::parse(getCurrentWeather());
@@ -140,7 +136,7 @@ void gen_raw_responce(const Request& req, Response& res) {
         string description = j_weather["hourly"][hour]["weather"][0]["description"];
         raw["temp"] = int_temp_value;
         raw["description"] = description;
-        cout << "Raw strings have been updated.\n" << raw.dump(4) << endl;
+        cout << "Raw strings have been updated.\n";
     }
     res.set_content(raw.dump(), "text/json");
 }

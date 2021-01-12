@@ -4,11 +4,11 @@ import requests
 
 def site(event = None):
 	try:
-		upload = requests.get('http://localhost:3000/raw').content.decode("utf8")
-		upload_date = json.loads(upload)
+		load = requests.get('http://localhost:3000/raw').content.decode("utf8")
+		data = json.loads(load)
 
-		description.config(text=str(upload_date["description"]))
-		temperature.config(text=str(round(upload_date["temp"])) + "°C")
+		description.config(text = str(data["description"]))
+		temperature.config(text = str(round(data["temp"])) + "°C")
 	except requests.exceptions.ConnectionError:
 		pass
 
