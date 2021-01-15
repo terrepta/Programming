@@ -51,7 +51,7 @@ ostream& operator << (ostream& out, vector <Passenger>& all_pass) {
 	for (int i = 1; i < titles.size(); i++) {
 		out << ',' << titles[i];
 	}
-	out << endl;
+	out << '\r';
 
 	for (auto& pass : all_pass) {
 		string name = pass.name;
