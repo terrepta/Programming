@@ -46,12 +46,12 @@ istream& operator >> (istream& in, vector<Passenger>& all_pass)  {
 
 ostream& operator << (ostream& out, vector <Passenger>& all_pass) {
 	//для красивой таблицы:
-	/*vector<string> titles = { "Survived", "Pclass", "Name", "Sex", "Age", "SibSp", "Parch", "Ticket", "Fare", "Cabin", "Embarked"};
+	vector<string> titles = { "Survived", "Pclass", "Name", "Sex", "Age", "SibSp", "Parch", "Ticket", "Fare", "Cabin", "Embarked"};
 	out << titles[0];
 	for (int i = 1; i < titles.size(); i++) {
 		out << ',' << titles[i];
 	}
-	out << endl;*/
+	out << endl;
 
 	for (auto& pass : all_pass) {
 		string name = pass.name;
