@@ -24,124 +24,124 @@ json file;
 
 //десериализация конфигурационного файла
 json get_config() {
-    ifstream config("config.json");
-    string config_s;
-    config >> config_s;
-    if (!config or config_s.empty()) {
-        logger << u8"Файл config.json невозможно открыть, либо он пуст. Будет создан пустой конфигурационный файл.\n";
-        file["webhooks"] = json::array();
-    }
-    else {
-        config >> file;
-        logger << u8"Десериализация json прошла успешно.\n";
-        config.close();
-    }
-    return file;
+	ifstream config("config.json");
+	string config_s;
+	config >> config_s;
+	if (!config or config_s.empty()) {
+		logger << u8"Файл config.json невозможно открыть, либо он пуст. Будет создан пустой конфигурационный файл.\n";
+		file["webhooks"] = json::array();
+	}
+	else {
+		config >> file;
+		logger << u8"Десериализация json прошла успешно.\n";
+		config.close();
+	}
+	return file;
 }
 
 //запись/обновление информации получаемого json-а в config.json
 void record_to_config(json file) {
-    ofstream record("config.json");
-    if (!record) {
-        logger << u8"Не удалось открыть config.json.  \n";
-    }
-    else {
-        logger << u8"Запись/обновление кофигурационного файла...\n";
-        record << file.dump();
-        logger << u8"Обновление файла окончено.\n";
-        record.close();
-    }
+	ofstream record("config.json");
+	if (!record) {
+		logger << u8"Не удалось открыть config.json.  \n";
+	}
+	else {
+		logger << u8"Запись/обновление кофигурационного файла...\n";
+		record << file.dump();
+		logger << u8"Обновление файла окончено.\n";
+		record.close();
+	}
 }
 
 //создание шаблона страницы с вебхуками
 string page() {
-    string web_temp;
-    ifstream page("webhooks.html");
-    if (!page) {
-        logger << u8"Не удалось открыть webhooks.html.\n";
-        return "";
-    }
-    else {
-        logger << u8"Считывание шаблона из webhooks.html.\n";            //считывание в строку web
-        getline(page, web_temp, '\0');
-        page.close();
-    }
+	string web_temp;
+	ifstream page("webhooks.html");
+	if (!page) {
+		logger << u8"Не удалось открыть webhooks.html.\n";
+		return "";
+	}
+	else {
+		logger << u8"Считывание шаблона из webhooks.html.\n";            //считывание в строку web
+		getline(page, web_temp, '\0');
+		page.close();
+	}
 
-    string final_page;
-    string part_of_page;
-    int n = file["webhooks"].size();
-    if (n == 0) {
-        web_temp.replace(web_temp.find(w_list), w_list.size(), "");
-    }
-    else {
-        for (int i = 0; i < n; i++) {
-            part_of_page = webhook_template;
-            part_of_page.replace(part_of_page.find(w_url), w_url.size(), file["webhooks"][i]);
-            part_of_page.replace(part_of_page.find(w_url), w_url.size(), file["webhooks"][i]);
-            final_page += part_of_page;
-        }
-        web_temp.replace(web_temp.find(w_list), w_list.size(), final_page);
-    }
-    return web_temp;
+	string final_page;
+	string part_of_page;
+	int n = file["webhooks"].size();
+	if (n == 0) {
+		web_temp.replace(web_temp.find(w_list), w_list.size(), "");
+	}
+	else {
+		for (int i = 0; i < n; i++) {
+			part_of_page = webhook_template;
+			part_of_page.replace(part_of_page.find(w_url), w_url.size(), file["webhooks"][i]);
+			part_of_page.replace(part_of_page.find(w_url), w_url.size(), file["webhooks"][i]);
+			final_page += part_of_page;
+		}
+		web_temp.replace(web_temp.find(w_list), w_list.size(), final_page);
+	}
+	return web_temp;
 }
 
 
 //вывод страницы с вебхуками
 void get_webhooks(const Request& req, Response& res) {
-    res.set_content(page(), "text/html; charset=UTF-8");
+	res.set_content(page(), "text/html; charset=UTF-8");
 }
 
 //работает при нажатии кнопок на странице
 //обрабатывает вносимые изменения
 void post_webhooks(const Request& req, Response& res) {
-    if (req.has_param("del")) {
-        string value = req.get_param_value("del");
-        if (value != "") {
-            logger << u8"Был получен новый параметр del\n";
-            int n = file["webhooks"].size();
-            for (int i = 0; i < n; i++) {
-                if (file["webhooks"][i] == value) {
-                    file["webhooks"].erase(file["webhooks"].begin() + i);
-                    logger << u8"Вебхук был удалён.\n";
-                    break;
-                }
-            }
-        }
-        else {
-            logger << u8"Поступил пустой запрос на удаление вебхука.\n";
-        }
-    }
-    if (req.has_param("set")) {
-        string value = req.get_param_value("set");
-        if (value != "") {                                         //если пришла не пустая строка
-            logger << u8"Был получен новый параметр set\n";
-            if (!file["webhooks"].empty()) {                       //если в конфигурационном файле что-то уже есть
-                bool exists = false;
-                int n = file["webhooks"].size();
-                for (int i = 0; i < n; i++) {
-                    if (file["webhooks"][i] == value) {
-                        exists = true;
-                        logger << u8"Добавляемый вебхук уже существует.\n";
-                        break;
-                    }
-                }
-                if (!exists) {
-                    file["webhooks"].push_back(value);
-                    logger << u8"Новый вебхук был добавлен.\n";
-                }
-            }
-            else {
-                file["webhooks"].push_back(value);
-                logger << u8"Новый вебхук был добавлен.\n";
-            }
-        }
-        else {
-            logger << u8"Поступил пустой запрос на создание вебхука.\n";
-        }
-    }
+	if (req.has_param("del")) {
+		string value = req.get_param_value("del");
+		if (value != "") {
+			logger << u8"Был получен новый параметр del\n";
+			int n = file["webhooks"].size();
+			for (int i = 0; i < n; i++) {
+				if (file["webhooks"][i] == value) {
+					file["webhooks"].erase(file["webhooks"].begin() + i);
+					logger << u8"Вебхук был удалён.\n";
+					break;
+				}
+			}
+		}
+		else {
+			logger << u8"Поступил пустой запрос на удаление вебхука.\n";
+		}
+	}
+	if (req.has_param("set")) {
+		string value = req.get_param_value("set");
+		if (value != "") {                                         //если пришла не пустая строка
+			logger << u8"Был получен новый параметр set\n";
+			if (!file["webhooks"].empty()) {                       //если в конфигурационном файле что-то уже есть
+				bool exists = false;
+				int n = file["webhooks"].size();
+				for (int i = 0; i < n; i++) {
+					if (file["webhooks"][i] == value) {
+						exists = true;
+						logger << u8"Добавляемый вебхук уже существует.\n";
+						break;
+					}
+				}
+				if (!exists) {
+					file["webhooks"].push_back(value);
+					logger << u8"Новый вебхук был добавлен.\n";
+				}
+			}
+			else {
+				file["webhooks"].push_back(value);
+				logger << u8"Новый вебхук был добавлен.\n";
+			}
+		}
+		else {
+			logger << u8"Поступил пустой запрос на создание вебхука.\n";
+		}
+	}
 
-    record_to_config(file);
-    res.set_content(page(), "text/html; charset=UTF-8");
+	record_to_config(file);
+	res.set_content(page(), "text/html; charset=UTF-8");
 }
 
 //начало работы с Алисой
@@ -193,7 +193,7 @@ json help_buttons = {
 //заполнение и возврат json-a с ответом на запрос 
 json send_to_user(const string& text, const string& tts, const json& buttons, const json* new_session = nullptr, const bool end_session = false) {
 	json data = {
-		{"response", 
+		{"response",
 		{
 			{"buttons", buttons},
 			{"end_session", end_session}
@@ -231,7 +231,7 @@ void alice(const Request& req, Response& res)
 			break;
 		}
 	}
-	if (request["session"]["new"].get<bool>()) { 
+	if (request["session"]["new"].get<bool>()) {
 		if (new_session == nullptr) {		//если сессия новая, то 
 			json session;
 			session["user_id"] = user_id;		//считывается id пользователя
@@ -335,13 +335,11 @@ void alice(const Request& req, Response& res)
 					 Говорить - включение озвучки реплик. 
 					 Корзина - помощь в организации вашей покупки.
 				     О чем рассказать подробнее?
-
 					 Нажмите "Выход" для выхода из режима помощи.)";
 			tts = u8R"(Молчать - отключение озвучки реплик.
 					 Говорить - включение озвучки реплик. 
 					 Корзина - помощь в организации вашей покупки.
 				     О чем рассказать подробнее?
-
 					 Нажмите "Выход" для выхода из режима помощи.)";
 			json res_file = send_to_user(txt, tts, help_buttons, new_session);
 			(*new_session)["skills"] = help_skill;
@@ -506,12 +504,12 @@ void alice(const Request& req, Response& res)
 				txt += u8" рублей";
 				tts += u8" рублей";
 			}
-			
+
 			json res_file = send_to_user(txt, tts, help, new_session);
 			res.set_content(res_file.dump(2), "text/json; charset=UTF-8");
 		}
 		else if (com == u8"покупка завершена") {
-		    txt = u8"Покупка завершена. Заходите ещё!";
+			txt = u8"Покупка завершена. Заходите ещё!";
 			tts = u8"Покупка завершена. Заходите ещё!";
 			json output, conf;
 			output["user_id"] = user_id;
@@ -543,12 +541,10 @@ void alice(const Request& req, Response& res)
 
 int main()
 {
-    Server svr;                                 // Создаём сервер 
-    svr.Get("/webhooks", get_webhooks);         //для работы с вх
-    svr.Post("/webhooks", post_webhooks);
+	Server svr;                                 // Создаём сервер 
+	svr.Get("/webhooks", get_webhooks);         //для работы с вх
+	svr.Post("/webhooks", post_webhooks);
 	svr.Post("/", alice);						//команды Алисы
-    logger << u8"Сервер запущен по адресу http://localhost:1234/" << endl;
-    svr.listen("localhost", 1234);
+	logger << u8"Сервер запущен по адресу http://localhost:1234/" << endl;
+	svr.listen("localhost", 1234);
 }
-
-
