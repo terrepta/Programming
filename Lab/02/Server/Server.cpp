@@ -237,7 +237,7 @@ void alice(const Request& req, Response& res)
 			session["user_id"] = user_id;		//считывается id пользователя
 			session["skills"] = exit_skill;		//набор кнопок начальный
 			session["voice"] = on;				//озвучка реплик включена
-			session["basket"] = json::array();
+			session["check"] = json::array();
 
 			session_json.push_back(session);
 			new_session = &session_json[session_json.size() - 1];
@@ -317,29 +317,27 @@ void alice(const Request& req, Response& res)
 	}
 	else {
 		if (com == u8"молчать") {
-			string txt = u8"Молчу, молчу";
-			string tts;
+			txt = u8"Молчу, молчу";
+			tts;
 			(*new_session)["voice"] = off;
 			json res_file = send_to_user(txt, tts, help, new_session);
 			res.set_content(res_file.dump(2), "text/json; charset=UTF-8");
 		}
 		else if (com == u8"говорить") {
-			string txt = u8"Хорошо";
-			string tts = u8"Хорошо";
+			txt = u8"Хорошо";
+			tts = u8"Хорошо";
 			(*new_session)["voice"] = on;
 			json res_file = send_to_user(txt, tts, help, new_session);
 			res.set_content(res_file.dump(2), "text/json; charset=UTF-8");
 		}
 		else if (com == u8"помощь") {
-			string txt =
-				u8R"(Молчать - отключение озвучки реплик.
+			txt = u8R"(Молчать - отключение озвучки реплик.
 					 Говорить - включение озвучки реплик. 
 					 Корзина - помощь в организации вашей покупки.
 				     О чем рассказать подробнее?
 
 					 Нажмите "Выход" для выхода из режима помощи.)";
-			string tts =
-				u8R"(Молчать - отключение озвучки реплик.
+			tts = u8R"(Молчать - отключение озвучки реплик.
 					 Говорить - включение озвучки реплик. 
 					 Корзина - помощь в организации вашей покупки.
 				     О чем рассказать подробнее?
@@ -351,8 +349,8 @@ void alice(const Request& req, Response& res)
 		}
 
 		else if (com == u8"очистить корзину") {
-			string txt = u8"Корзина очищена";
-			string tts = u8"Корзина очищена";
+			txt = u8"Корзина очищена";
+			tts = u8"Корзина очищена";
 			json res_file = send_to_user(txt, tts, help, new_session);
 			(*new_session).erase("check");
 			(*new_session)["check"] = json::array();
@@ -360,8 +358,8 @@ void alice(const Request& req, Response& res)
 		}
 		else if (com.find(u8"добавить в корзину") == 0) {
 			size_t size = request["request"]["nlu"]["tokens"].size();
-			string txt = u8"ОК";
-			string tts = u8"ОК";
+			txt = u8"ОК";
+			tts = u8"ОК";
 			string item_name;
 			int item_price = 0, num_index = 0;
 			bool set_price = false;
@@ -411,9 +409,6 @@ void alice(const Request& req, Response& res)
 		}
 		else if (com.find(u8"удалить из корзины") == 0) {
 			size_t size = request["request"]["nlu"]["tokens"].size();
-
-			string txt;
-			string tts;
 			string name = "";
 
 			for (int i = 3; i < size; ++i) {
@@ -450,7 +445,6 @@ void alice(const Request& req, Response& res)
 			res.set_content(res_file.dump(2), "text/json; charset=UTF-8");
 		}
 		else if (com == u8"что в корзине") {
-			string txt, tts;
 			if ((*new_session)["check"].empty()) {
 				txt = u8"В корзине ничего нет";
 				tts = u8"В корзине ничего нет";
@@ -491,9 +485,6 @@ void alice(const Request& req, Response& res)
 			res.set_content(res_file.dump(2), "text/json; charset=UTF-8");
 		}
 		else if (com == u8"сумма") {
-			string txt = "";
-			string tts = "";
-
 			size_t size = request["request"]["nlu"]["tokens"].size();
 			int sum = 0;
 			for (auto& cart_item : (*new_session)["check"]) {
@@ -520,18 +511,20 @@ void alice(const Request& req, Response& res)
 			res.set_content(res_file.dump(2), "text/json; charset=UTF-8");
 		}
 		else if (com == u8"покупка завершена") {
-			string txt = u8"Покупка завершена. Заходите ещё!";
-			string tts = u8"Покупка завершена. Заходите ещё!";
+		    txt = u8"Покупка завершена. Заходите ещё!";
+			tts = u8"Покупка завершена. Заходите ещё!";
 			json output, conf;
 			output["user_id"] = user_id;
 			output["check"] = (*new_session)["check"];
 			conf = get_config();
 
-			for (string link : conf["webhooks"]) {
+			for (string link : conf["webhooks"])
+			{
 				int ind = link.find('/', static_cast<string>("https://").size());
 				Client cli(link.substr(0, ind).c_str());
 				cli.Post(link.substr(ind, -1).c_str(), output.dump(2), "application/json; charset=UTF-8");
 			}
+
 			(*new_session).erase("check");
 			(*new_session)["check"] = json::array();
 
@@ -539,8 +532,8 @@ void alice(const Request& req, Response& res)
 			res.set_content(res_file.dump(2), "text/json; charset=UTF-8");
 		}
 		else {
-			string txt = u8"Неизвестная команда";
-			string tts = u8"Неизвестная команда";
+			txt = u8"Неизвестная команда";
+			tts = u8"Неизвестная команда";
 
 			json res_file = send_to_user(txt, tts, help, new_session);
 			res.set_content(res_file.dump(2), "text/json; charset=UTF-8");
