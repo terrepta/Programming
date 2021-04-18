@@ -9,6 +9,9 @@
 | Практическая 33 - [[C++]](./Practice/33/C++/33/main.cpp) [[Python]](./Practice/33/Python/33.py) | [Лабораторная 4 ](./Lab/04/) |
 | Практическая 34 - [[C++]](./Practice/34/C++/34/main.cpp)  | ------------ |
 | Практическая 35 - [[C++]](./Practice/35/C++/35/main.cpp)  | ------------ |
+| Практическая 36 - [[C++]](./Practice/36/C++/36/main.cpp) [[Python]](./Practice/36/Python/36.py)  | ------------ |
+| Практическая 37 - [[C++]](./Practice/37/C++/vector/main.cpp) [[Python]](./Practice/37/Python/37.py)  | ------------ |
+| Практическая 38 - [[C++]](./Practice/38/C++/38/main.cpp) [[Python]](./Practice/38/Python/38.py)  | ------------ |
 
 ### Первый семестр
 
